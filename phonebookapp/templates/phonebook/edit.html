@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>
+      {% block title %}PHONEBOOK{% endblock %}
+    </title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+          rel="stylesheet"
+          id="bootstrap-css">
+  </head>
+  <body>
+    <div class="col-md-12">
+      <form method="POST" class="post-form" action="/phoneupdate">
+        {% csrf_token %}
+        <div style="font-size: 13px;" class="container">
+          <br>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+              <h3>Update Details</h3>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2" id='labelname'>PhoneBook Id:</label>
+            <div class="col-sm-3">
+              <input type="number"
+                     name="phonebook_id"
+                     value="{{ ren.phonebook_id }}"
+                     class="form-control"
+                     maxlength="80"
+                     required
+                     id="id_phonebook_id">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2" id='labelname'>Name:</label>
+            <div class="col-sm-3">
+              <input type="text"
+                     name="name"
+                     value="{{ ren.name }}"
+                     class="form-control"
+                     maxlength="80"
+                     id="id_name">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2" id='labelname'>Contact:</label>
+            <div class="col-sm-3">
+              <input type="text"
+                     name="contact"
+                     value="{{ ren.contact }}"
+                     class="form-control"
+                     maxlength="80"
+                     id="id_contact">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+              <button type="submit" class="btn btn-success btn-lg">Update</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </body>
+  </html>

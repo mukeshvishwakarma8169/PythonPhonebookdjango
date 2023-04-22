@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <base href="/">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <title>
+            {% block title %}PHONEBOOK{% endblock %}
+        </title>
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+              rel="stylesheet"
+              id="bootstrap-css">
+        <!-- FOR TABLE -->
+        <link rel="stylesheet"
+              href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+        <link rel="stylesheet"
+              href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    </head>
+    <body>
+        
+        <div style="font-size: 13px;" class="col-md-10 mt-5 mx-5">
+            <span><a href="/phoneaddnew" class="btn btn-primary mb-2">Add New Record</a></span>
+            <div class="table-responsive">
+                <table id="bootstrapdatatable"
+                       class="table table-striped table-bordered"
+                       width="98%">
+                    <thead>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>PhoneBook Id</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                    </thead>
+                    <tbody>
+                        {% for st in ren %}
+                            <tr>
+                                <td>
+                                    <a href="/phonemasteredit/{{ st.id }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                                </td>
+                                <td>
+                                    <a href="/phonedelete/{{ st.id }}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a>
+                                </td>
+                                <td>{{ st.phonebook_id }}</td>
+                                <td>{{ st.name }}</td>
+                                <td>{{ st.contact }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('#bootstrapdatatable').DataTable({
+                  "searching": true,
+                  "paging": true,
+                  "order": [[0, "desc"]],
+                  "ordering": true,
+                  "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
+                });
+              });
+        </script>
+    </body>
+</html>
